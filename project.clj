@@ -1,6 +1,5 @@
 (defproject dmohs.cljs-react/lein-template "0.0.2"
   :url "https://github.com/dmohs/cljs-react-template"
   :description "ClojureScript + dmohs/react project template."
-  :license {:name "Eclipse Public License"
-            :url "http://www.eclipse.org/legal/epl-v10.html"}
+  :license "http://opensource.org/licenses/MIT"
   :eval-in-leiningen true)
