@@ -1,9 +1,9 @@
 (ns {{namespace}}.utils
-  (:require-macros
-   [{{namespace}}.utils :refer [log jslog cljslog pause]])
   (:require
    clojure.string
-   [dmohs.react :as react]))
+   [dmohs.react :as react])
+  (:require-macros
+   [{{namespace}}.utils :refer [log jslog cljslog pause]]))
 
 
 (defn deep-merge [& maps]
@@ -80,4 +80,4 @@
       (.. this -props -children)])
    :should-component-update
    (fn [{:keys [props next-props]}]
-     (not= (:data props) (:data next-props)))})
+     (not= (dissoc props :state) (dissoc next-props :state)))})

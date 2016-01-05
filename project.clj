@@ -1,4 +1,4 @@
-(defproject dmohs.cljs-react/lein-template "0.0.2"
+(defproject dmohs.cljs-react/lein-template "0.0.3"
   :url "https://github.com/dmohs/cljs-react-template"
   :description "ClojureScript + dmohs/react project template."
   :license "http://opensource.org/licenses/MIT"
