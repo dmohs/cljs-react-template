@@ -1,7 +1,7 @@
 (defproject {{name}} "0.0.1"
   :dependencies
   [
-   [dmohs/react "0.2.10"]
+   [dmohs/react "0.2.11"]
    [org.clojure/clojure "1.7.0"]
    [org.clojure/clojurescript "1.7.48"]
    ]

@@ -25,13 +25,12 @@
 
 
 (defcard clicky-div
-  (fn [data-atom owner]
-    (react/create-element
-     u/DevcardsComponent @data-atom
-     [ClickyDiv (merge {:name "nice person"
+  (react/wrap-devcard-fn
+   (fn [data-atom owner devcard-props]
+     [ClickyDiv (merge devcard-props
+                       {:name "nice person"
                         :word (:word @data-atom)
-                       :on-word-request (fn [] (swap! data-atom assoc :word (get-random-word)))}
-                       {:on-state-change #(swap! data-atom assoc :state %)})]))
+                        :on-word-request #(swap! data-atom assoc :word (get-random-word))})]))
   {:word (get-random-word)}
   {:inspect-data true})
 

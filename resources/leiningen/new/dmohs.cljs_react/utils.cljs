@@ -70,14 +70,3 @@
           (if data
             (.send xhr data)
             (.send xhr)))))))
-
-
-(react/defc DevcardsComponent
-  "Protects children from getting re-rendered when reporting state via the data-atom."
-  {:render
-   (fn [{:keys [this]}]
-     [:div {}
-      (.. this -props -children)])
-   :should-component-update
-   (fn [{:keys [props next-props]}]
-     (not= (dissoc props :state) (dissoc next-props :state)))})
