@@ -30,4 +30,4 @@
                                            :output-dir "target/build"
                                            :asset-path "build"
                                            :output-to "target/compiled.js"}}}}
-  :resource {:resource-paths ["src/static"]})
+  :resource {:resource-paths ["src/static"] :skip-stencil [#".*"]})
