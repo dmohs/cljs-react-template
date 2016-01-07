@@ -28,12 +28,28 @@ Serve the files:
 ruby -run -ehttpd target -p8000
 ```
 
-(possibly in another shell) Start Figwheel:
+(possibly in another shell) Start Figwheel with the Devcards UI:
 
 ```bash
-lein figwheel
+lein with-profile +devcards figwheel
 ```
 
 Once compiling has finished, you should be able to see the Devcards UI here:
 
 http://localhost:8000/
+
+## Other Compilation Modes
+
+Note: Do a clean before rebuilding in a different mode or things may break.
+
+Run your application (without Devcards) with Figwheel's hot reloading:
+
+```bash
+lein with-profile +figwheel do clean, resource, figwheel
+```
+
+Create a deployable build:
+
+```bash
+lein with-profile +minimized do clean, resource, cljsbuild once
+```
