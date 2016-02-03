@@ -15,10 +15,7 @@
              ["src/cljs/{{source-path}}/utils.clj" (render "utils.clj" data)]
              ["src/cljs/{{source-path}}/utils.cljs" (render "utils.cljs" data)]
              ["src/cljs/{{source-path}}/core.cljs" (render "core.cljs" data)]
-             ["src/cljs/{{source-path}}/main.cljs" (render "main.cljs" data)]
-             ["src/cljs-dev/{{source-path}}/dev.cljs" (render "dev.cljs" data)]
-             ["src/cljs-dev/{{source-path}}/main_devcards.cljs" (render "main_devcards.cljs" data)]
-             ["src/cljs-figwheel/{{source-path}}/main_figwheel.cljs"
-              (render "main_figwheel.cljs" data)]
+             ["src/cljs-dev/{{source-path}}/main_dev.cljs" (render "main_dev.cljs" data)]
+             ["src/cljs-prod/{{source-path}}/main.cljs" (render "main.cljs" data)]
              ["src/cljs-prod/devcards/core.clj" (render "prod_devcards_core.clj" data)]
              ["src/static/index.html" (render "index.html" data)])))
