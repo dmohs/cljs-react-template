@@ -1,3 +1,25 @@
+(defn- inside-container? []
+  (.exists (clojure.java.io/file "/.dockerenv")))
+
+
+(def figwheel-opts
+  (when (inside-container?)
+    (let [specified-host (if-let [x (System/getenv "FIGWHEEL_HOST")]
+                           (if (clojure.string/blank? (clojure.string/trim x)) nil x))
+          host (or specified-host "192.168.99.100")]
+      (when (nil? specified-host)
+        (println (str "***\n"
+                      "*** You did not specify a FIGWHEEL_HOST environment variable.\n"
+                      "*** Using the default: " host "\n"
+                      "***")))
+      {:websocket-url (str "ws://" host ":3449/figwheel-ws")})))
+
+
+(def figwheel-server-opts
+  (when (inside-container?)
+    {:hawk-options {:watcher :polling}}))
+
+
 (defproject {{name}} "0.0.1"
   :dependencies
   [
@@ -14,14 +36,16 @@
                                        :optimizations :none
                                        :source-map true
                                        :source-map-timestamp true}
-                                      :figwheel {}}}}}
+                                      :figwheel ~figwheel-opts}}}
+                   :figwheel ~figwheel-server-opts}
              :devcards {:cljsbuild
-                        {:builds {:client {:figwheel {:devcards true}}}}}
+                        {:builds {:client {:figwheel ~(merge figwheel-opts
+                                                             {:devcards true})}}}}
              :deploy {:cljsbuild
                       {:builds {:client {:source-paths ["src/cljs-prod"]
                                          :compiler
                                          {:main "{{namespace}}.main"
-                                          :optimizations :advanced
+                                          :optimizations :simple
                                           :pretty-print false}}}}}}
   :cljsbuild {:builds {:client {:source-paths ["src/cljs"]
                                 :compiler {:output-dir "target/build"

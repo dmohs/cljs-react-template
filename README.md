@@ -6,7 +6,7 @@ Includes figwheel, devtools, and devcards for a great development experience.
 
 ## Usage
 
-Install [Leiningen](http://leiningen.org/). Then, create a new project from this template:
+Install [Leiningen](http://leiningen.org/) (or use docker as shown below). Then, create a new project from this template:
 
 ```bash
 lein new dmohs.cljs-react myself/my-project --to-dir my-project
@@ -51,5 +51,20 @@ lein with-profile +figwheel do clean, resource, figwheel
 Create a deployable build:
 
 ```bash
-lein with-profile +minimized do clean, resource, cljsbuild once
+lein with-profile deploy do clean, resource, cljsbuild once
+```
+
+## Dockerized
+
+Instead of installing Leiningen, you can just use the [Clojure](https://hub.docker.com/_/clojure/) docker image:
+
+```bash
+docker pull clojure
+```
+
+then:
+
+```bash
+docker run --rm -it -w /work -v "$PWD":/work -v "$HOME"/.m2:/root/.m2 -p 3449:3449 \
+  clojure lein figwheel
 ```
