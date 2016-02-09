@@ -1,8 +1,8 @@
 # cljs-react-template
 
-A Leiningen template for ClojureScript + dmohs/react.
+A Leiningen template for ClojureScript + [dmohs/react-cljs](https://github.com/dmohs/react-cljs).
 
-Includes figwheel, devtools, and devcards for a great development experience.
+Includes [figwheel](https://github.com/bhauman/lein-figwheel), [devtools](https://github.com/binaryage/cljs-devtools), and [devcards](https://github.com/bhauman/devcards) for a great development experience.
 
 ## Usage
 

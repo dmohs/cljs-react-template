@@ -1,5 +1,6 @@
 (ns {{namespace}}.core
   (:require
+   devcards.core
    [dmohs.react :as react]
    [{{namespace}}.utils :as u])
   (:require-macros

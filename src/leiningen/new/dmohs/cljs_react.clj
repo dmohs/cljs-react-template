@@ -12,10 +12,14 @@
     (main/info "Generating fresh 'lein new' dmohs/cljs-react project.")
     (->files data
              ["project.clj" (render "project.clj" data)]
-             ["src/cljs/{{source-path}}/utils.clj" (render "utils.clj" data)]
-             ["src/cljs/{{source-path}}/utils.cljs" (render "utils.cljs" data)]
-             ["src/cljs/{{source-path}}/core.cljs" (render "core.cljs" data)]
-             ["src/cljs-dev/{{source-path}}/main_dev.cljs" (render "main_dev.cljs" data)]
-             ["src/cljs-prod/{{source-path}}/main.cljs" (render "main.cljs" data)]
-             ["src/cljs-prod/devcards/core.clj" (render "prod_devcards_core.clj" data)]
+             ["src/cljs/core/{{source-path}}/utils.clj" (render "utils.clj" data)]
+             ["src/cljs/core/{{source-path}}/utils.cljs" (render "utils.cljs" data)]
+             ["src/cljs/core/{{source-path}}/core.cljs" (render "core.cljs" data)]
+             ["src/cljs/devtools/{{source-path}}/install_devtools.cljs"
+              (render "install_devtools.cljs" data)]
+             ["src/cljs/figwheel/{{source-path}}/main.cljs" (render "figwheel_main.cljs" data)]
+             ["src/cljs/devcards/{{source-path}}/devcards.cljs" (render "devcards.cljs" data)]
+             ["src/cljs/deploy/{{source-path}}/main.cljs" (render "deploy_main.cljs" data)]
+             ["src/cljs/deploy/devcards/core.clj" (render "deploy_devcards_core.clj" data)]
+             ["src/cljs/deploy/devcards/core.cljs" (render "deploy_devcards_core.cljs" data)]
              ["src/static/index.html" (render "index.html" data)])))

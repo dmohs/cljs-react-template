@@ -23,31 +23,38 @@
 (defproject {{name}} "0.0.1"
   :dependencies
   [
-   [dmohs/react "0.2.11"]
+   [dmohs/react "0.2.12"]
    [org.clojure/clojure "1.7.0"]
    [org.clojure/clojurescript "1.7.228"]
    ]
-  :plugins [[lein-cljsbuild "1.1.2"] [lein-figwheel "0.5.0-6"] [lein-resource "15.10.2"]]
-  :profiles {:dev {:dependencies [[binaryage/devtools "0.4.1"] [devcards "0.2.1-2"]]
+  :plugins [[lein-cljsbuild "1.1.2"] [lein-resource "15.10.2"]]
+  :profiles {:dev {:plugins [[lein-figwheel "0.5.0" :exclusions [org.clojure/clojure]]]
+                   :dependencies [[binaryage/devtools "0.5.2"]
+                                  [devcards "0.2.1" :exclusions [cljsjs/react]]]
                    :cljsbuild
-                   {:builds {:client {:source-paths ["src/cljs-dev"]
+                   {:builds {:client {:source-paths ["src/cljs/devtools"]
                                       :compiler
-                                      {:main "{{namespace}}.main-dev"
-                                       :optimizations :none
+                                      {:optimizations :none
                                        :source-map true
                                        :source-map-timestamp true}
-                                      :figwheel ~figwheel-opts}}}
+                                      :figwheel ~(merge {} figwheel-opts)}}}
                    :figwheel ~figwheel-server-opts}
+             :figwheel {:cljsbuild
+                        {:builds
+                         {:client {:source-paths ["src/cljs/figwheel"]
+                                   :compiler {:main "{{namespace}}.main"}}}}}
              :devcards {:cljsbuild
-                        {:builds {:client {:figwheel ~(merge figwheel-opts
+                        {:builds {:client {:source-paths ["src/cljs/devcards"]
+                                           :compiler {:main "{{namespace}}.devcards"}
+                                           :figwheel ~(merge figwheel-opts
                                                              {:devcards true})}}}}
              :deploy {:cljsbuild
-                      {:builds {:client {:source-paths ["src/cljs-prod"]
+                      {:builds {:client {:source-paths ["src/cljs/deploy"]
                                          :compiler
                                          {:main "{{namespace}}.main"
                                           :optimizations :simple
                                           :pretty-print false}}}}}}
-  :cljsbuild {:builds {:client {:source-paths ["src/cljs"]
+  :cljsbuild {:builds {:client {:source-paths ["src/cljs/core"]
                                 :compiler {:output-dir "target/build"
                                            :asset-path "build"
                                            :output-to "target/compiled.js"}}}}
